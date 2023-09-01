@@ -5,6 +5,7 @@ import {
   loadRecipe,
   loadSearchResults,
   state,
+  updateServings,
 } from './model';
 import recipeView from './views/recipeView';
 import searchView from './views/searchView';
@@ -53,10 +54,16 @@ const controlPagination = function (go) {
   paginationView.render(state.search);
 };
 
+const controlServings = function (val) {
+  updateServings(val);
+  recipeView.render(state.recipe);
+};
+
 const init = function () {
   recipeView.addHandlerEvent(controlRecipes);
   searchView.addHandlerEvent(controlSeachResults);
   paginationView.addHandlerEvent(controlPagination);
+  recipeView.addServingEvent(controlServings);
 };
 
 init();
